@@ -13,23 +13,31 @@ Phần này nối tiếp phần mini research ở buổi lý thuyết (slide 62�
 
 ## Phiếu của nhóm
 
+**Phạm vi: Thí nghiệm phục vụ CP5, không đăng ký điểm bonus.**
+
 Điền vào cột cuối. Không xóa hai cột đầu.
 
 | Field | Hướng dẫn | Nhóm điền |
 | --- | --- | --- |
-| CÂU | R1 / R2 / R3 / R4 | |
-| SOURCE | Paper/blog, năm, URL, loại bằng chứng (benchmark, production report, blog kinh nghiệm) | |
-| CLAIM | Một kết luận gốc của nguồn. Không viết rộng hơn phạm vi paper | |
-| BOUNDARY | Model / dataset / setup giới hạn kết luận đó | |
-| HYPOTHESIS | Nếu đổi shape A→B (hoặc bật/tắt một thành phần), metric X sẽ đổi theo hướng nào, khoảng bao nhiêu | |
-| METHOD | Biến giữ cố định: model, tools, seed, corpus, giá, evaluator. Biến duy nhất được thay đổi: … | |
-| FAILURE / METRIC | Một lỗi dự kiến và cách đo nó: pass rate, pass^5, variance, cost/success, leak, bypass | |
+| CÂU | R1 / R2 / R3 / R4 | R2 |
+| SOURCE | Paper/blog, năm, URL, loại bằng chứng (benchmark, production report, blog kinh nghiệm) | Cemri et al., Why Do Multi-Agent LLM Systems Fail?, NeurIPS 2025, https://arxiv.org/abs/2503.13657 ; nghiên cứu thực nghiệm và taxonomy MAST. |
+| CLAIM | Một kết luận gốc của nguồn. Không viết rộng hơn phạm vi paper | MAST chia lỗi MAS thành specification/system design, inter-agent misalignment và task verification/termination. |
+| BOUNDARY | Model / dataset / setup giới hạn kết luận đó | Taxonomy từ các hệ MAS trong nghiên cứu; không chứng minh hiệu quả trên LogiX-VN hoặc single agent. Áp dụng nhóm termination cho single ở đây là giả thuyết của nhóm. |
+| HYPOTHESIS | Nếu đổi shape A→B (hoặc bật/tắt một thành phần), metric X sẽ đổi theo hướng nào, khoảng bao nhiêu | Giảm step cap single từ 8 xuống 2 sẽ dừng trước final trên claim cần đọc order và quote; dự đoán pass rate giảm ít nhất 50 điểm phần trăm và cost/success tăng. |
+| METHOD | Biến giữ cố định: model, tools, seed, corpus, giá, evaluator. Biến duy nhất được thay đổi: … | Giữ MockLLM, decide/prompt, tools, 14 claim public, seed 11/22/33/44/55, pricing và evaluator; fresh SQLite mỗi trial. Chỉ thay max_steps 8→2 qua experiments/single_cap2.py. |
+| FAILURE / METRIC | Một lỗi dự kiến và cách đo nó: pass rate, pass^5, variance, cost/success, leak, bypass | Termination sớm: status failed, error_reason step_cap dù đã đọc quote. Đo pass rate, pass^5, seed variance và VND mô phỏng/success. Phân loại termination là cách vận dụng của nhóm, không phải kết quả paper về lab này. |
 
 ## Kết quả ablation
 
-- Lệnh đã chạy (copy nguyên văn):
-- Run id / file report:
-- Kết quả so với hypothesis (đúng / sai / không kết luận được), kèm số liệu:
+- Lệnh đã chạy (copy nguyên văn), từ src/:
+
+```powershell
+.\.venv\Scripts\python.exe -m lab8.benchmark --shapes single,single_cap2 --extra-shape single_cap2=experiments.single_cap2:run_claim --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/single_ablation.json
+```
+
+- Run id / file report: src/reports/single_ablation.json; 70 trial cho mỗi biến thể, JSON do benchmark sinh lại sau khi viết lại single.py. Không sửa tay JSON.
+- Kết quả: phù hợp hypothesis. Cap 8 đạt 70/70, pass rate/pass^5 = 1.000; cap 2 đạt 10/70, pass rate/pass^5 = 0.142857 (giảm 85,71 điểm phần trăm). Seed variance đều 0. Cost/success tăng 31,83→213,41 VND mô phỏng. Cap 2 fail 60 trial: 35 cần resolved, 25 cần denied; đủ đọc quote nhưng thiếu bước trả final.
+- Giới hạn bổ sung: đây là ablation step cap, không chứng minh single tốt hơn MAS. Chưa chạy hidden. Mean steps trong benchmark đếm trace events, khác số vòng ReAct. Wrapper cap 2 patch tạm trong tiến trình benchmark tuần tự, không dành cho chạy đồng thời.
 - Giới hạn: MockLLM không phải model sản xuất, latency là `unavailable`.
 
-Muốn đi xa hơn một ablation để lấy điểm cộng thì xem [docs/bonus_topics.md](../../docs/bonus_topics.md).
+Biến thể single_cap2 chỉ dùng làm đối chứng cho research card CP5; shape nộp chính là single.
