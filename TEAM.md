@@ -26,8 +26,35 @@ Gợi ý chia vai:
 | Người | Vai | Commit | Test đã thêm hoặc sửa |
 | --- | --- | --- | --- |
 | Nguyễn Quỳnh Trang — 2A202603477 | Workflow + tích hợp | `c24ed30` | `src/tests/test_workflow_ticket_boundary.py` |
-| Nguyễn Trung Duy — 2A202603387 | Single Agent (ReAct) | `1d8278d` | `src/tests/test_single_agent.py` |
+| Nguyễn Trung Duy — 2A202603387 | Single Agent (ReAct); kiểm approval, crash, trace; thí nghiệm CP5 | `1d8278d` | `src/tests/test_single_agent.py` (12 trường hợp) |
 | Vũ Đức Tâm — 2A202603522 | Orchestrator + Handoff; benchmark, ADR và báo cáo nhóm | `9cecb25` | `src/tests/test_orchestrator_safety.py` (14 trường hợp) |
+
+## Cá nhân — Nguyễn Trung Duy (2A202603387)
+
+Báo cáo riêng: [2A202603387_NguyenTrungDuy.md](report/team/2A202603387_NguyenTrungDuy.md).
+
+### Phần việc phụ trách
+
+- CP1: chuẩn bị môi trường Python, đọc `business_rules.md`, `contracts.md` và `swarm_reference.py`.
+- CP2: triển khai shape Single Agent, hàm `decide()` và vòng ReAct tối đa 8 bước.
+- CP3: truyền `crash_at` đến host, không bắt `InjectedCrash`; kiểm tra chạy lại sau crash.
+- CP4: kiểm approval, ticket injection, secret/PII leak và kết quả trên ma trận public của single.
+- CP5: điền research card, chạy thí nghiệm giới hạn bước và viết báo cáo cá nhân.
+
+### Đóng góp cụ thể
+
+- Triển khai `src/lab8/shapes/single.py`: agent chỉ chọn tool đọc qua `worker=True`; số tiền lấy từ kết quả `compute_compensation`. Code truyền quote đầy đủ vào `durability.issue_refund` để host kiểm approval, trần theo đơn và idempotency.
+- Dùng MockLLM để ghi nhận usage mô phỏng, không gọi model thật. Trace ghi luồng xử lý và kết quả, không ghi ticket, parent secret, header hoặc PII.
+- Thêm `src/tests/test_single_agent.py` với 12 trường hợp: step cap, injection, claim không tồn tại, ba điểm crash, bốn dạng approval sai, approval thấp hơn quote và kiểm dữ liệu riêng tư trong trace/kết quả/stdout.
+- Tạo `src/experiments/single_cap2.py` để so sánh cap 8 và cap 2, cập nhật [research card](report/team/research_card.md). Đây là thí nghiệm phục vụ CP5.
+- Bổ sung topic bonus B7 riêng: `src/bonus/grader_audit.py`, `src/tests/test_bonus_grader_audit.py` và [bonus_report.md](report/team/bonus_report.md). Kiểm toán ba grader bằng quan hệ metamorphic, phát hiện sai lệch chi phí, mẫu số lỗi hạ tầng và pass^5 khi nhân đôi trial. Phần bonus mới chưa commit.
+
+### Bằng chứng
+
+- Commit triển khai và test: `1d8278d` (`single agent`).
+- Ma trận public riêng single đã chạy đạt 62 test; bộ host cùng 12 test bổ sung tại thời điểm kiểm tra đạt 66 test.
+- [single_ablation.json](src/reports/single_ablation.json): 14 claim × 5 seed, single cap 8 đạt 70/70 trial; biến thể cap 2 đạt 10/70. Chi phí mô phỏng/success lần lượt 31,83 và 213,41 VND.
+- Test crash kiểm ba điểm `before_effect`, `after_effect_before_checkpoint`, `after_checkpoint`; resume giữ một refund và một audit committed. Chưa có kết quả hidden.
 
 ## Cá nhân — Vũ Đức Tâm (2A202603522)
 

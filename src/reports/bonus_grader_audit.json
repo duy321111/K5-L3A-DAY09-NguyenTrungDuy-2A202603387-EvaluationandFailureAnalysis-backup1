@@ -1,0 +1,1722 @@
+{
+  "topic": "B7",
+  "inputs_sha256": {
+    "metamorphic_claim_delay.json": "9a5438f418c84c74c0aebdbee269d4b6850c46ac615ddcb374c702dcf9015b18",
+    "metamorphic_duplicate.json": "61ac092f390a8ae5525e5632e9120611d3c3772431217e1bbb7315679e31a544",
+    "metamorphic_infra.json": "33d26119c387d7618fe1fc60b5c842251da86d5c70bf3c3865c2ce307e256d00",
+    "grader_a": "8c24d994a35c3a8b438906b5481947c5cf9fd1bdb1d81e18f6f343de3aa8cdb9",
+    "grader_b": "03149e645da0039f59f49a58685bb05b0af352094917d822d8a94595948259f9",
+    "grader_c": "f09fe8bb15b466189c4eec547758f55e08247eaa3bff554346ee7f3f38b72a7c",
+    "bonus/grader_audit.py": "e3948be164159fae27f545b28b79970450dfd12d2aecbd38d6b241afaf3331b3"
+  },
+  "results": {
+    "grader_a": {
+      "delay_boundary": {
+        "relation": "delay_boundary",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "delay_2.amount_vnd",
+            "expected": 0,
+            "actual": 0,
+            "holds": true
+          },
+          {
+            "field": "delay_3.amount_vnd",
+            "expected": 35000,
+            "actual": 35000,
+            "holds": true
+          },
+          {
+            "field": "entitlement_flips",
+            "expected": true,
+            "actual": true,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": 0,
+          "b": 35000,
+          "scope": "shared quote function"
+        }
+      },
+      "infra_exclusion": {
+        "relation": "infra_exclusion",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 9,
+            "actual": 9,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 31.5,
+              "total_simulated_cost_vnd": 283.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 16,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3,
+                "timeout": 2,
+                "crash": 2
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 31.5,
+              "total_simulated_cost_vnd": 283.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      },
+      "duplication": {
+        "relation": "duplication",
+        "holds": false,
+        "violations": [
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 31.5,
+            "actual": 26.27777777777778,
+            "holds": false
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.0,
+            "holds": false
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 567.0,
+            "actual": 473.0,
+            "holds": false
+          }
+        ],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 31.5,
+            "actual": 26.27777777777778,
+            "holds": false
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 24,
+            "actual": 24,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_model_calls",
+            "expected": 2.0,
+            "actual": 2.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_steps",
+            "expected": 4.25,
+            "actual": 4.25,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_tool_calls",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.p95_steps",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.0,
+            "holds": false
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_max",
+            "expected": 0.8333333333333334,
+            "actual": 0.8333333333333334,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_min",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_variance",
+            "expected": 0.006944444444444451,
+            "actual": 0.006944444444444451,
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 18,
+            "actual": 18,
+            "holds": true
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 567.0,
+            "actual": 473.0,
+            "holds": false
+          },
+          {
+            "field": "workflow.trials",
+            "expected": 24,
+            "actual": 24,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 31.5,
+              "total_simulated_cost_vnd": 283.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 24,
+              "graded_trials": 24,
+              "reasons": {
+                "ok": 18,
+                "refund_mismatch": 6
+              },
+              "successes": 18,
+              "pass_rate": 0.75,
+              "pass_5": 0.0,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 26.27777777777778,
+              "total_simulated_cost_vnd": 473.0,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      },
+      "order_invariance": {
+        "relation": "order_invariance",
+        "holds": false,
+        "violations": [
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 31.5,
+            "actual": 31.666666666666668,
+            "holds": false
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 283.5,
+            "actual": 285.0,
+            "holds": false
+          }
+        ],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.reasons",
+            "expected": {
+              "ok": 9,
+              "refund_mismatch": 3
+            },
+            "actual": {
+              "ok": 9,
+              "refund_mismatch": 3
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 9,
+            "actual": 9,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_variance",
+            "expected": 0.006944444444444451,
+            "actual": 0.006944444444444451,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_min",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_max",
+            "expected": 0.8333333333333334,
+            "actual": 0.8333333333333334,
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 31.5,
+            "actual": 31.666666666666668,
+            "holds": false
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 283.5,
+            "actual": 285.0,
+            "holds": false
+          },
+          {
+            "field": "workflow.mean_steps",
+            "expected": 4.25,
+            "actual": 4.25,
+            "holds": true
+          },
+          {
+            "field": "workflow.p95_steps",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_model_calls",
+            "expected": 2.0,
+            "actual": 2.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_tool_calls",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_note",
+            "expected": "simulated_not_real_api_price",
+            "actual": "simulated_not_real_api_price",
+            "holds": true
+          },
+          {
+            "field": "workflow.latency",
+            "expected": "unavailable",
+            "actual": "unavailable",
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 31.5,
+              "total_simulated_cost_vnd": 283.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 31.666666666666668,
+              "total_simulated_cost_vnd": 285.0,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      }
+    },
+    "grader_b": {
+      "delay_boundary": {
+        "relation": "delay_boundary",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "delay_2.amount_vnd",
+            "expected": 0,
+            "actual": 0,
+            "holds": true
+          },
+          {
+            "field": "delay_3.amount_vnd",
+            "expected": 35000,
+            "actual": 35000,
+            "holds": true
+          },
+          {
+            "field": "entitlement_flips",
+            "expected": true,
+            "actual": true,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": 0,
+          "b": 35000,
+          "scope": "shared quote function"
+        }
+      },
+      "infra_exclusion": {
+        "relation": "infra_exclusion",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 9,
+            "actual": 9,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 16,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3,
+                "timeout": 2,
+                "crash": 2
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      },
+      "duplication": {
+        "relation": "duplication",
+        "holds": false,
+        "violations": [
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.0,
+            "holds": false
+          }
+        ],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 21.055555555555557,
+            "actual": 21.055555555555557,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 24,
+            "actual": 24,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_model_calls",
+            "expected": 2.0,
+            "actual": 2.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_steps",
+            "expected": 4.25,
+            "actual": 4.25,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_tool_calls",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.p95_steps",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.0,
+            "holds": false
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_max",
+            "expected": 0.8333333333333334,
+            "actual": 0.8333333333333334,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_min",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_variance",
+            "expected": 0.006944444444444451,
+            "actual": 0.006944444444444451,
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 18,
+            "actual": 18,
+            "holds": true
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 379.0,
+            "actual": 379.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.trials",
+            "expected": 24,
+            "actual": 24,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 24,
+              "graded_trials": 24,
+              "reasons": {
+                "ok": 18,
+                "refund_mismatch": 6
+              },
+              "successes": 18,
+              "pass_rate": 0.75,
+              "pass_5": 0.0,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 379.0,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      },
+      "order_invariance": {
+        "relation": "order_invariance",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.reasons",
+            "expected": {
+              "ok": 9,
+              "refund_mismatch": 3
+            },
+            "actual": {
+              "ok": 9,
+              "refund_mismatch": 3
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 9,
+            "actual": 9,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_variance",
+            "expected": 0.006944444444444451,
+            "actual": 0.006944444444444451,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_min",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_max",
+            "expected": 0.8333333333333334,
+            "actual": 0.8333333333333334,
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 21.055555555555557,
+            "actual": 21.055555555555557,
+            "holds": true
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 189.5,
+            "actual": 189.5,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_steps",
+            "expected": 4.25,
+            "actual": 4.25,
+            "holds": true
+          },
+          {
+            "field": "workflow.p95_steps",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_model_calls",
+            "expected": 2.0,
+            "actual": 2.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_tool_calls",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_note",
+            "expected": "simulated_not_real_api_price",
+            "actual": "simulated_not_real_api_price",
+            "holds": true
+          },
+          {
+            "field": "workflow.latency",
+            "expected": "unavailable",
+            "actual": "unavailable",
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      }
+    },
+    "grader_c": {
+      "delay_boundary": {
+        "relation": "delay_boundary",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "delay_2.amount_vnd",
+            "expected": 0,
+            "actual": 0,
+            "holds": true
+          },
+          {
+            "field": "delay_3.amount_vnd",
+            "expected": 35000,
+            "actual": 35000,
+            "holds": true
+          },
+          {
+            "field": "entitlement_flips",
+            "expected": true,
+            "actual": true,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": 0,
+          "b": 35000,
+          "scope": "shared quote function"
+        }
+      },
+      "infra_exclusion": {
+        "relation": "infra_exclusion",
+        "holds": false,
+        "violations": [
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.5625,
+            "holds": false
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 16,
+            "holds": false
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.625,
+              "22": 0.5
+            },
+            "holds": false
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.5,
+            "holds": false
+          }
+        ],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.5625,
+            "holds": false
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 16,
+            "holds": false
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 9,
+            "actual": 9,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.625,
+              "22": 0.5
+            },
+            "holds": false
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.5,
+            "holds": false
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 16,
+              "graded_trials": 16,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3,
+                "timeout": 2,
+                "crash": 2
+              },
+              "successes": 9,
+              "pass_rate": 0.5625,
+              "pass_5": 0.5,
+              "seed_pass_rates": {
+                "11": 0.625,
+                "22": 0.5
+              },
+              "seed_variance": 0.00390625,
+              "seed_min": 0.5,
+              "seed_max": 0.625,
+              "cost_per_success_vnd": 23.72222222222222,
+              "total_simulated_cost_vnd": 213.5,
+              "mean_steps": 3.4375,
+              "p95_steps": 5.0,
+              "mean_model_calls": 1.75,
+              "mean_tool_calls": 4.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      },
+      "duplication": {
+        "relation": "duplication",
+        "holds": false,
+        "violations": [
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.0,
+            "holds": false
+          }
+        ],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 21.055555555555557,
+            "actual": 21.055555555555557,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 24,
+            "actual": 24,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_model_calls",
+            "expected": 2.0,
+            "actual": 2.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_steps",
+            "expected": 4.25,
+            "actual": 4.25,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_tool_calls",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.p95_steps",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.0,
+            "holds": false
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_max",
+            "expected": 0.8333333333333334,
+            "actual": 0.8333333333333334,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_min",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_variance",
+            "expected": 0.006944444444444451,
+            "actual": 0.006944444444444451,
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 18,
+            "actual": 18,
+            "holds": true
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 379.0,
+            "actual": 379.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.trials",
+            "expected": 24,
+            "actual": 24,
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 24,
+              "graded_trials": 24,
+              "reasons": {
+                "ok": 18,
+                "refund_mismatch": 6
+              },
+              "successes": 18,
+              "pass_rate": 0.75,
+              "pass_5": 0.0,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 379.0,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      },
+      "order_invariance": {
+        "relation": "order_invariance",
+        "holds": true,
+        "violations": [],
+        "checks": [
+          {
+            "field": "a.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "b.shapes",
+            "expected": [
+              "workflow"
+            ],
+            "actual": [
+              "workflow"
+            ],
+            "holds": true
+          },
+          {
+            "field": "workflow.trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.graded_trials",
+            "expected": 12,
+            "actual": 12,
+            "holds": true
+          },
+          {
+            "field": "workflow.reasons",
+            "expected": {
+              "ok": 9,
+              "refund_mismatch": 3
+            },
+            "actual": {
+              "ok": 9,
+              "refund_mismatch": 3
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.successes",
+            "expected": 9,
+            "actual": 9,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_rate",
+            "expected": 0.75,
+            "actual": 0.75,
+            "holds": true
+          },
+          {
+            "field": "workflow.pass_5",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_pass_rates",
+            "expected": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "actual": {
+              "11": 0.8333333333333334,
+              "22": 0.6666666666666666
+            },
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_variance",
+            "expected": 0.006944444444444451,
+            "actual": 0.006944444444444451,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_min",
+            "expected": 0.6666666666666666,
+            "actual": 0.6666666666666666,
+            "holds": true
+          },
+          {
+            "field": "workflow.seed_max",
+            "expected": 0.8333333333333334,
+            "actual": 0.8333333333333334,
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_per_success_vnd",
+            "expected": 21.055555555555557,
+            "actual": 21.055555555555557,
+            "holds": true
+          },
+          {
+            "field": "workflow.total_simulated_cost_vnd",
+            "expected": 189.5,
+            "actual": 189.5,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_steps",
+            "expected": 4.25,
+            "actual": 4.25,
+            "holds": true
+          },
+          {
+            "field": "workflow.p95_steps",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_model_calls",
+            "expected": 2.0,
+            "actual": 2.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.mean_tool_calls",
+            "expected": 5.0,
+            "actual": 5.0,
+            "holds": true
+          },
+          {
+            "field": "workflow.cost_note",
+            "expected": "simulated_not_real_api_price",
+            "actual": "simulated_not_real_api_price",
+            "holds": true
+          },
+          {
+            "field": "workflow.latency",
+            "expected": "unavailable",
+            "actual": "unavailable",
+            "holds": true
+          }
+        ],
+        "observations": {
+          "a": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          },
+          "b": {
+            "workflow": {
+              "trials": 12,
+              "graded_trials": 12,
+              "reasons": {
+                "ok": 9,
+                "refund_mismatch": 3
+              },
+              "successes": 9,
+              "pass_rate": 0.75,
+              "pass_5": 0.6666666666666666,
+              "seed_pass_rates": {
+                "11": 0.8333333333333334,
+                "22": 0.6666666666666666
+              },
+              "seed_variance": 0.006944444444444451,
+              "seed_min": 0.6666666666666666,
+              "seed_max": 0.8333333333333334,
+              "cost_per_success_vnd": 21.055555555555557,
+              "total_simulated_cost_vnd": 189.5,
+              "mean_steps": 4.25,
+              "p95_steps": 5.0,
+              "mean_model_calls": 2.0,
+              "mean_tool_calls": 5.0,
+              "cost_note": "simulated_not_real_api_price",
+              "latency": "unavailable"
+            }
+          }
+        }
+      }
+    }
+  },
+  "safety": {
+    "refund_execution": false,
+    "secret_leak_count": null,
+    "approval_bypass_count": null,
+    "note": "Audit uses synthetic aggregate fixtures, not shape execution; safety gates are separate."
+  },
+  "limits": "Passing finite metamorphic relations does not prove general correctness. No hidden evaluation.",
+  "run_id": "B7-c30b412c7324"
+}
