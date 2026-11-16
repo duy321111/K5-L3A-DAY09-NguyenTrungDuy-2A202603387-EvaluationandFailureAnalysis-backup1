@@ -2,18 +2,18 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
+- Tên nhóm: MEOMEO
 - Lớp: L3A
-- Repo nhóm: `K5-L3A-DAY08-TenNhom-FromWorkflowsToAgents` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Repo nhóm: `https://github.com/vuductam20022004/K5-L3A-DAY08-MEOMEO-FromWorkflowsToAgents` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/vuductam20022004/K5-L3A-DAY08-MEOMEO-FromWorkflowsToAgents/tree/main
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-
+|   1 |Vũ Đức Tâm|2A202603522|ductamyenphucnamdinh@gmail.com|https://github.com/vuductam20022004 | Trưởng nhóm: Orchestrator + Handoff và hoàn thành báo cáo|
+|   2 |Nguyễn Quỳnh Trang|2A202603477|nguyenquynhtrang7092005@gmail.com|https://github.com/NguyenTrang005|Xây dựng bản workflow và tổng hợp kết quả của team|
+|   3 |Nguyễn Trung Duy | 2A202603387 | duy321111@gmail.com | https://github.com/duy321111 | Single Agent (ReAct)|
 Gợi ý chia vai:
 
 - Nhóm 6 người: integration; workflow; single agent; orchestrator; ledger/policy/crash; eval/report.
