@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Trung Duy
 - MSSV: 2A202603387
-- Email: chưa cung cấp
+- Email: duy321111@gmail.com
 - GitHub: duy321111
 - Vai trò: Người 2 — Single Agent (ReAct)
 
@@ -31,8 +31,7 @@ Thí nghiệm phục vụ CP5, không đăng ký điểm bonus. Biến thể sin
 - Agent chỉ được gọi tool đọc qua worker=True. Runtime giới hạn 8 lần decide(); hết bước trả failed/step_cap và không ghi refund.
 - Crash lan truyền ra caller. Test kiểm cả before_effect, after_effect_before_checkpoint và after_checkpoint; resume chỉ có một effect và một committed audit.
 - Thêm 12 test: step cap, ticket injection, unknown claim, ba điểm crash, bốn dạng approval sai, approval thấp hơn quote và kiểm tra secret/PII.
-- Commit: chưa tạo; chỉ bổ sung hash sau khi có commit thật.
-
+- Commit: 1d8278d
 ## 4. Bằng chứng
 
 Các lệnh chạy từ src/ bằng Python trong .venv:
