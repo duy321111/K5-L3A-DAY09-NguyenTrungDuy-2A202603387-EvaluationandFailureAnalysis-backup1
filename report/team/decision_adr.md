@@ -4,7 +4,7 @@
 `Shape chọn` phải là đúng một trong: `workflow`, `single`, `orchestrator`, `swarm`. Đây là shape được chấm cổng hidden.
 
 - Shape chọn: workflow
-- Commit hash: CHƯA CHỐT — Tâm thay bằng hash commit chứa code và `src/reports/benchmark.json` sau khi tự review và commit.
+- Commit hash: 9cecb25 (commit chứa code Orchestrator và `src/reports/benchmark.json`)
 - Run id dẫn chứng: R-workflow-C-014-s11 (`src/reports/benchmark.json`; quote 150.000 VND, effect 120.000 VND)
 - Pass rate / pass^5 / seed min-max / variance: 1,000 / 1,000 / 1,000–1,000 / 0,000000 (70 trial public, 14 claim × 5 seed)
 - Cost per success (mô phỏng, VND): 27,857142857 (từ `src/reports/benchmark.json`)
@@ -48,7 +48,7 @@ Bằng chứng chạy ngày 16/11/2026:
 - Quét 70 trace public của Orchestrator với toàn bộ parent canary và các giá trị phone/address/internal_note/item_name từ fixture: 0 file khớp dữ liệu cấm. Test injection còn kiểm cả kết quả, handoff, stdout và stderr.
 - `src/reports/crash.json`: 20/20 của suite chuẩn **host + swarm**. Bằng chứng crash riêng Orchestrator là T12 và ba trường hợp trong test mới; không coi suite chuẩn là 20 điểm crash riêng của Orchestrator.
 
-Quyết định phía trên dùng benchmark chạy lại sau khi tích hợp code Workflow và Single. Hướng dẫn tái lập: [bàn giao Người 3](../../docs/person3_handoff.md). Chưa có `student_drop/`, chưa đưa ra số liệu hoặc kết luận về hidden. Hash commit chốt do Tâm điền sau khi tự commit như đã yêu cầu.
+Quyết định phía trên dùng benchmark chạy lại sau khi tích hợp code Workflow và Single. Hướng dẫn tái lập: [bàn giao Người 3](../../docs/person3_handoff.md). Chưa có `student_drop/`, chưa đưa ra số liệu hoặc kết luận về hidden. Commit `9cecb25` chứa code Orchestrator cùng report benchmark được dẫn chứng.
 
 ## Giới hạn
 

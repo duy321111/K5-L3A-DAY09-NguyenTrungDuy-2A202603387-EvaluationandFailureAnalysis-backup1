@@ -5,7 +5,7 @@
 - Tên nhóm: MEOMEO
 - Lớp: L3A
 - Repo nhóm: `https://github.com/vuductam20022004/K5-L3A-DAY08-MEOMEO-FromWorkflowsToAgents` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: https://github.com/vuductam20022004/K5-L3A-DAY08-MEOMEO-FromWorkflowsToAgents ; nhánh làm việc `tam`, commit chốt điền sau khi Tâm tự commit và tích hợp vào `main`.
+- URL repo, nhánh nộp, commit chốt: https://github.com/vuductam20022004/K5-L3A-DAY08-MEOMEO-FromWorkflowsToAgents ; nhánh làm việc `tam`, commit code và benchmark `9cecb25`; tích hợp vào `main` trước khi nộp.
 
 ## Thành viên
 
@@ -27,7 +27,7 @@ Gợi ý chia vai:
 | --- | --- | --- | --- |
 | Nguyễn Quỳnh Trang — 2A202603477 | Workflow + tích hợp | `c24ed30` | `src/tests/test_workflow_ticket_boundary.py` |
 | Nguyễn Trung Duy — 2A202603387 | Single Agent (ReAct) | `1d8278d` | `src/tests/test_single_agent.py` |
-| Vũ Đức Tâm — 2A202603522 | Orchestrator + Handoff; benchmark, ADR và báo cáo nhóm | Chờ hash commit sau khi Tâm review và tự commit | `src/tests/test_orchestrator_safety.py` (14 trường hợp) |
+| Vũ Đức Tâm — 2A202603522 | Orchestrator + Handoff; benchmark, ADR và báo cáo nhóm | `9cecb25` | `src/tests/test_orchestrator_safety.py` (14 trường hợp) |
 
 ## Cá nhân — Vũ Đức Tâm (2A202603522)
 
@@ -48,4 +48,4 @@ Báo cáo riêng: [2A202603522_VuDucTam.md](report/team/2A202603522_VuDucTam.md)
 
 - Cổng host: 82 test pass; ma trận student: 248 test pass, gồm 62 test Orchestrator. Test riêng Orchestrator: 14 trường hợp pass.
 - [benchmark.json](src/reports/benchmark.json): Orchestrator 70/70 trial public trên 14 claim × 5 seed; [crash.json](src/reports/crash.json): suite chuẩn host + swarm đạt 20/20. Crash riêng Orchestrator được kiểm bằng T12 và test mới.
-- `python -m lab8.check_submission`: 0 FAIL, còn WARN vì thay đổi chưa commit. Hash đóng góp sẽ được điền sau khi Tâm tự review và commit; chưa có kết quả hidden.
+- `python -m lab8.check_submission`: 0 FAIL khi chạy sau tích hợp. Commit code và benchmark `9cecb25`; chưa có kết quả hidden.

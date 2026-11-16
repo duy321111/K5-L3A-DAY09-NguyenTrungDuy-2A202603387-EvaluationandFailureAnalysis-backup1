@@ -6,7 +6,7 @@ Tối đa 5 trang ngoài phụ lục. Số liệu lấy từ file trong `src/rep
 
 - Tên nhóm: MEOMEO
 - Thành viên: xem `TEAM.md`
-- Commit chốt (trùng `report/team/decision_adr.md`): chưa chốt; Tâm tự commit sau khi review rồi thay hash ở hai file.
+- Commit chốt (trùng `report/team/decision_adr.md`): `9cecb25` — code Orchestrator và benchmark; tài liệu ghi hash ở commit kế tiếp.
 
 ## 2. Mục tiêu và cách tiếp cận
 

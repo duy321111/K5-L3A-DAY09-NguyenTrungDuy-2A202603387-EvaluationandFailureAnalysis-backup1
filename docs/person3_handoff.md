@@ -2,7 +2,7 @@
 
 Phạm vi theo `plan.md`: Orchestrator + Handoff, test bảo mật/crash, mục 3 báo cáo nhóm và phần trace trong ADR. Môi trường và kiểm tra dưới đây thực hiện ngày 16/11/2026 trên Windows/Python 3.13.13.
 
-Code Orchestrator, test và tài liệu còn trong working tree để Tâm tự review và commit. Workflow và Single của đồng đội đã được tích hợp; hash chốt bài điền sau khi Tâm tự commit.
+Code Orchestrator, test và benchmark đã được lưu trong commit `9cecb25`. Workflow và Single của đồng đội đã được tích hợp; ADR dùng hash của commit chứa code và report này.
 
 ## Mở môi trường trên máy này
 
@@ -67,12 +67,12 @@ python -m lab8.check_submission
 
 `benchmark.json` và `crash.json` được công cụ chính thức sinh, không sửa tay. Orchestrator: 70/70 public trial, pass/pass^5 1/1, variance 0, cost/success 47,447142857 VND mô phỏng, mean/p95 steps 5,357142857/6. Crash suite chuẩn host + swarm đạt 20/20; không suy ra đó là 20 crash riêng Orchestrator. Không có `student_drop/`, chưa đo hidden. Latency `unavailable`.
 
-Benchmark đã sinh lại sau khi tích hợp cả ba shape: Workflow, Single và Orchestrator đều đạt 70/70 public trial. `check_submission` ra `0 FAIL, 1 WARN`; WARN vì thay đổi chưa commit. Hash chốt bài trong ADR còn chờ Tâm thay sau khi tự commit.
+Benchmark đã sinh lại sau khi tích hợp cả ba shape: Workflow, Single và Orchestrator đều đạt 70/70 public trial. `check_submission` đã ra `0 FAIL`; commit `9cecb25` chứa code và report dùng cho ADR.
 
 ## Bàn giao để nộp nhóm
 
 1. Tâm review code, report và số liệu đã tích hợp; tự xác nhận phần tự đánh giá trong `report/team/2A202603522_VuDucTam.md`.
-2. Tâm tự commit code và report như đã yêu cầu. Sau commit đầu, lấy hash thật bằng `git rev-parse --short HEAD`, thay `CHƯA CHỐT` trong ADR và mục commit chốt báo cáo nhóm, cập nhật dòng đóng góp của Tâm trong TEAM.md, rồi commit phần tài liệu. Không thể ghi hash của chính một commit vào nội dung commit đó.
+2. Commit code và report `9cecb25` đã có. ADR, báo cáo nhóm và TEAM.md dẫn đúng hash này; các chỉnh sửa ghi hash được lưu ở commit tài liệu kế tiếp vì không thể ghi hash của chính một commit vào nội dung commit đó.
 3. Chạy `python -m lab8.check_submission` lại; đảm bảo nhánh nộp `main` chứa công việc của `tam` trước khi push/nộp.
 4. Mỗi thành viên tự nộp cùng link repo trên LMS; repo GitHub phải mở được cho giảng viên. Chưa có pack hidden nên chưa có kết quả hidden.
 
