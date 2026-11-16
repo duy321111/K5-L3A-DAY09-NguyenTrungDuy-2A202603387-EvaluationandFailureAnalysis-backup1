@@ -26,7 +26,7 @@ Gợi ý chia vai:
 | Người | Vai | Commit | Test đã thêm hoặc sửa |
 | --- | --- | --- | --- |
 | Nguyễn Quỳnh Trang — 2A202603477 | Workflow + tích hợp | `c24ed30` | `src/tests/test_workflow_ticket_boundary.py` |
-| Nguyễn Trung Duy — 2A202603387 | Single Agent (ReAct); kiểm approval, crash, trace; thí nghiệm CP5 | `1d8278d` | `src/tests/test_single_agent.py` (12 trường hợp) |
+| Nguyễn Trung Duy — 2A202603387 | Single Agent (ReAct); kiểm approval, crash, trace; thí nghiệm CP5 | `1d8278d` | `src/tests/test_single_agent.py`: `test_single_step_cap_never_writes`, `test_single_resume_has_one_effect`, `test_single_invalid_approval_is_audited`, `test_single_trace_excludes_private_fields` (12 trường hợp tổng cộng trong file) |
 | Vũ Đức Tâm — 2A202603522 | Orchestrator + Handoff; benchmark, ADR và báo cáo nhóm | `9cecb25` | `src/tests/test_orchestrator_safety.py` (14 trường hợp) |
 
 ## Cá nhân — Nguyễn Trung Duy (2A202603387)
