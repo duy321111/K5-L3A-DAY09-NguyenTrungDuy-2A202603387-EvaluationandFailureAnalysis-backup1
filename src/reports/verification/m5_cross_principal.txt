@@ -1,0 +1,10 @@
+== fixed C-110@11  lab8 grader: PASS (ok)
+-- trace (step, kind, payload)
+   1 handoff            {"max_output_tokens": 400, "facts": {}, "claim_id": "C-110", "request_id": "REQ-C-110", "contract_version": "h
+   2 investigator       {"lookup_order": {"visible": false, "reason": "outside_principal_scope", "order_id": "O-110"}, "policy_count":
+   3 reply              {"text": "Dạ, yêu cầu đã được chuyển cho chuyên viên xử lý."}
+-- ledger vs label
+  refund_vnd     ledger=0        label=0
+  refund_count   ledger=0        label=0
+  status         result=escalated label=escalated
+  unexpected ledger rows: 0

@@ -1,0 +1,409 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "m0_smoke",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.smoke"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m1_evalset",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.evalset",
+        "--check"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m5_cross_principal",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.trace_case",
+        "--shape",
+        "fixed",
+        "--claim",
+        "C-110",
+        "--seed",
+        "11",
+        "--spec",
+        "config/metric_spec_v2.yaml"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m5_evalset",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.evalset",
+        "--v2",
+        "--check"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m2_tone",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.judge",
+        "--csv",
+        "data/eval/judge_tone_public.csv",
+        "--audit",
+        "10"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m2_helpful",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.judge",
+        "--csv",
+        "data/eval/judge_helpful_public.csv",
+        "--audit",
+        "5"
+      ],
+      "expected": 1,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "tests_lab9",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "C:\\Users\\Duy\\AppData\\Local\\Temp\\lab9-verify-tests-0zyq9f2w\\cases",
+        "-k",
+        "lab9"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "tests_host",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "C:\\Users\\Duy\\AppData\\Local\\Temp\\lab9-verify-host-els2inda\\cases"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "baseline_v1",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.eval",
+        "--shape",
+        "swarm",
+        "--out",
+        "reports/baseline_v1.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "eval_fixed",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.eval",
+        "--shape",
+        "fixed",
+        "--out",
+        "reports/eval_fixed.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "eval_seeded_regression",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.eval",
+        "--shape",
+        "seeded_regression",
+        "--out",
+        "reports/eval_seeded_regression.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "baseline_v2",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.eval",
+        "--shape",
+        "swarm",
+        "--spec",
+        "config/metric_spec_v2.yaml",
+        "--out",
+        "reports/baseline_v2.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m4_eval_pr",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.eval",
+        "--shape",
+        "swarm",
+        "--out",
+        "reports/eval_pr.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m4_baseline_check",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.ci_check",
+        "--pr",
+        "reports/eval_pr.json",
+        "--baseline",
+        "reports/baseline_v1.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m4_gate_pr",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/eval_pr.json",
+        "--baseline",
+        "reports/baseline_v1.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m4_gate_fixed",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/eval_fixed.json",
+        "--baseline",
+        "reports/baseline_v1.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m4_gate_seeded_regression",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/eval_seeded_regression.json",
+        "--baseline",
+        "reports/baseline_v1.json"
+      ],
+      "expected": 1,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "m3_detection",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.mutation",
+        "--detect"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m6_aa",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.mutation",
+        "--spec",
+        "config/metric_spec_v2.yaml",
+        "--aa",
+        "66,77,88,99,110"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m5_m7_scorecard",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.mutation",
+        "--spec",
+        "config/metric_spec_v2.yaml",
+        "--baseline",
+        "reports/baseline_v2.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m7_slice_report",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.eval",
+        "--shape",
+        "slice_regression",
+        "--spec",
+        "config/metric_spec_v2.yaml",
+        "--out",
+        "reports/eval_slice_regression.json"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m7_traps",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.traps",
+        "--pr",
+        "reports/eval_slice_regression.json",
+        "--baseline",
+        "reports/baseline_v2.json",
+        "--spec",
+        "config/metric_spec_v2.yaml"
+      ],
+      "expected": 0,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "m7_gate_evaluator_errors_as_nan",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/traps/evaluator_errors_as_nan.json",
+        "--baseline",
+        "reports/baseline_v2.json",
+        "--spec",
+        "config/metric_spec_v2.yaml"
+      ],
+      "expected": 1,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "m7_gate_dropped_failing_rows",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/traps/dropped_failing_rows.json",
+        "--baseline",
+        "reports/baseline_v2.json",
+        "--spec",
+        "config/metric_spec_v2.yaml"
+      ],
+      "expected": 1,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "m7_gate_cherry_picked_seeds",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/traps/cherry_picked_seeds.json",
+        "--baseline",
+        "reports/baseline_v2.json",
+        "--spec",
+        "config/metric_spec_v2.yaml"
+      ],
+      "expected": 1,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "m7_gate_loosened_spec",
+      "command": [
+        "D:\\AI\\Lab\\K5-L3A-DAY09-NguyenTrungDuy-2A202603387-EvaluationandFailureAnalysis\\src\\.venv\\Scripts\\python.exe",
+        "-m",
+        "lab9.gate",
+        "--pr",
+        "reports/traps/loosened_spec.json",
+        "--baseline",
+        "reports/baseline_v2.json",
+        "--spec",
+        "reports/traps/loosened_spec.spec.yaml",
+        "--base-spec",
+        "config/metric_spec_v2.yaml"
+      ],
+      "expected": 1,
+      "exit_code": 1,
+      "passed": true
+    }
+  ]
+}
