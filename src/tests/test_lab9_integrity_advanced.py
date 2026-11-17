@@ -85,3 +85,12 @@ def test_constant_judge_fails_calibration_cleanly(tmp_path):
     result = calibrate(path)
     assert result["passed"] is False
     assert result["corrected_fail_rate"] is None
+
+
+def test_evalset_checksum_survives_git_newline_normalization(tmp_path):
+    from lab9.evalset import sha12
+    unix = tmp_path / "unix.jsonl"
+    windows = tmp_path / "windows.jsonl"
+    unix.write_bytes(b'{"item_id":"E-1"}\n')
+    windows.write_bytes(b'{"item_id":"E-1"}\r\n')
+    assert sha12(unix) == sha12(windows)
