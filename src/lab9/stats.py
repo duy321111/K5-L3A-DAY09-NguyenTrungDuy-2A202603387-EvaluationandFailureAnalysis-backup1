@@ -1,60 +1,83 @@
-"""Statistics students implement (M2 judge calibration, M4 paired bootstrap).
-
-Rules: a judge is a classifier -- measure it like one. A higher mean is not
-"better" until the paired CI of the difference excludes 0.
-Reference values to self-check are in tests/test_lab9_stats.py.
-"""
-
+"""Offline classifier calibration and paired, item-level uncertainty estimates."""
 from __future__ import annotations
-
 from collections.abc import Sequence
+from math import comb, isfinite
+from numbers import Integral
+import numpy as np
+from scipy.stats import bootstrap
 
-POS = "FAIL"   # the judge's job is to FIND failures, so FAIL is the positive class
+POS = "FAIL"
 
 
 def confusion(human: Sequence[str], judge: Sequence[str]) -> dict[str, int]:
-    """tp/fp/fn/tn with FAIL as positive."""
-    # TODO M2
-    raise NotImplementedError
+    if len(human) != len(judge) or not len(human):
+        raise ValueError("labels must have equal, nonzero lengths")
+    out = dict(tp=0, fp=0, fn=0, tn=0)
+    for h, j in zip(human, judge):
+        if h not in {"PASS", "FAIL"} or j not in {"PASS", "FAIL"}:
+            raise ValueError("labels must be PASS or FAIL")
+        out[("tp" if h == POS else "fp") if j == POS else ("fn" if h == POS else "tn")] += 1
+    return out
 
 
-def precision_recall(human: Sequence[str], judge: Sequence[str]) -> tuple[float, float]:
-    # TODO M2: precision = tp/(tp+fp), recall = tp/(tp+fn); return 0.0 when the denominator is 0
-    raise NotImplementedError
+def precision_recall(human, judge):
+    c = confusion(human, judge)
+    return (c['tp'] / (c['tp'] + c['fp']) if c['tp'] + c['fp'] else 0.0,
+            c['tp'] / (c['tp'] + c['fn']) if c['tp'] + c['fn'] else 0.0)
 
 
-def cohen_kappa(human: Sequence[str], judge: Sequence[str]) -> float:
-    """kappa = (p_o - p_e) / (1 - p_e). Raise ValueError when undefined (p_e == 1):
-    a constant judge has no signal and must FAIL calibration, not pass on a technicality."""
-    # TODO M2
-    raise NotImplementedError
+def cohen_kappa(human, judge):
+    c = confusion(human, judge)
+    n = sum(c.values())
+    po = (c['tp'] + c['tn']) / n
+    pe = ((c['tp'] + c['fn']) * (c['tp'] + c['fp']) +
+          (c['tn'] + c['fp']) * (c['tn'] + c['fn'])) / n**2
+    if pe == 1:
+        raise ValueError("kappa undefined: expected agreement is one")
+    return (po - pe) / (1 - pe)
 
 
-def rogan_gladen(observed_rate: float, sensitivity: float, specificity: float) -> float:
-    """Correct an observed failure rate for judge error; clip to [0, 1]."""
-    # TODO M2: (p_obs + spec - 1) / (sens + spec - 1)
-    raise NotImplementedError
+def rogan_gladen(observed_rate, sensitivity, specificity):
+    if any(not isfinite(x) or not 0 <= x <= 1 for x in (observed_rate, sensitivity, specificity)):
+        raise ValueError("rates must be finite and in [0,1]")
+    denominator = sensitivity + specificity - 1
+    if denominator <= 0:
+        raise ValueError("judge has no usable discrimination for rate correction")
+    return max(0.0, min(1.0, (observed_rate + specificity - 1) / denominator))
 
 
-def paired_bootstrap(a: Sequence[float], b: Sequence[float], *, n_resamples: int = 1000,
-                     rng: int = 2027, confidence: float = 0.95) -> tuple[float, float, float]:
-    """a[i], b[i] = per-item mean over seeds, SAME items, SAME order.
-    Return (mean(a)-mean(b), lo, hi) with scipy.stats.bootstrap(paired=True, method="percentile",
-    rng=numpy.random.default_rng(rng)). If a == b everywhere return (0.0, 0.0, 0.0)."""
-    # TODO M4
-    raise NotImplementedError
+def paired_bootstrap(a, b, *, n_resamples=1000, rng=2027, confidence=0.95):
+    a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
+    if a.ndim != 1 or b.ndim != 1 or a.size != b.size or not a.size:
+        raise ValueError("paired vectors must be nonempty, 1-D and equally sized")
+    if not np.all(np.isfinite(a)) or not np.all(np.isfinite(b)):
+        raise ValueError("paired vectors must be finite")
+    if n_resamples < 1 or not 0 < confidence < 1:
+        raise ValueError("invalid bootstrap configuration")
+    delta = float(np.mean(a - b))
+    if np.array_equal(a, b):
+        return 0.0, 0.0, 0.0
+    if a.size == 1:
+        return delta, delta, delta
+    result = bootstrap((a, b), lambda x, y, axis: np.mean(x - y, axis=axis),
+                       paired=True, vectorized=True, method="percentile",
+                       n_resamples=n_resamples, confidence_level=confidence,
+                       rng=np.random.default_rng(rng))
+    return delta, float(result.confidence_interval.low), float(result.confidence_interval.high)
+
+
+def _validate_k(n, c, k):
+    if any(isinstance(x, bool) or not isinstance(x, Integral) for x in (n, c, k)):
+        raise ValueError("n, c, k must be integers")
+    if n < 1 or not 0 <= c <= n or not 1 <= k <= n:
+        raise ValueError("require n>=1, 0<=c<=n, 1<=k<=n")
 
 
 def pass_at_k(n: int, c: int, k: int) -> float:
-    """Probability that AT LEAST ONE of k trials drawn from n (c of them passing) passes.
-    Unbiased estimator (Chen et al. 2021): 1 - C(n-c, k) / C(n, k). Raise ValueError if k > n."""
-    # TODO M6
-    raise NotImplementedError
+    _validate_k(n, c, k)
+    return 1.0 - (comb(n-c, k) / comb(n, k) if n-c >= k else 0.0)
 
 
 def pass_hat_k(n: int, c: int, k: int) -> float:
-    """pass^k (tau-bench, Yao et al. 2024): probability that ALL k trials drawn from n pass.
-    Unbiased estimator: C(c, k) / C(n, k). Raise ValueError if k > n.
-    pass^k <= pass@1 <= pass@k; a reliable agent keeps pass^k close to pass@1."""
-    # TODO M6
-    raise NotImplementedError
+    _validate_k(n, c, k)
+    return comb(c, k) / comb(n, k) if c >= k else 0.0

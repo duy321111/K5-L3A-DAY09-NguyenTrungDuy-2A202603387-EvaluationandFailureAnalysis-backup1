@@ -37,11 +37,14 @@ def check(pr: dict, base: dict, spec: dict) -> list[str]:
         problems.append(f"baseline shape is {base.get('shape')!r}, must be 'swarm' (re-run it on main)")
     if base.get("manifest", {}).get("eval_set_sha") != pr.get("manifest", {}).get("eval_set_sha"):
         problems.append("baseline eval_set_sha differs from the current eval set: re-run the baseline")
+    if base.get("metrics", {}).keys() != pr.get("metrics", {}).keys():
+        problems.append("baseline metric set differs from CI: regenerate the baseline")
     shared = sorted(base.get("metrics", {}).keys() & pr.get("metrics", {}).keys())
     for k in shared:
         if not _same(base["metrics"][k], pr["metrics"][k]):
             problems.append(f"baseline metric {k} differs from CI's swarm run: re-run, never hand-edit")
     own = [m for m in spec["metrics"] if m["id"] not in STARTER_METRICS
+           and not m["id"].startswith(("pass_at_", "pass_hat_"))
            and m.get("kind") == "capability" and m.get("blocking")]
     if not own:
         problems.append("spec has no blocking capability metric of your own (M3: the FM-08 catcher)")

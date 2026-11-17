@@ -85,3 +85,14 @@ def test_taxonomy_public_probe(monkeypatch, bug, cid, step, kind):
         assert trial["snapshot"]["refund_vnd"] == 20000
         assert "20.000" in good["trial"]["events"][-1]["payload"]["text"]
         assert trial["lab8_pass"]  # Existing grader misses the misleading reply.
+
+
+def test_pre_deduction_is_detected_even_when_ledger_is_zero():
+    from lab9.graders import ProposalAmountCorrect, RefundAmountCorrect
+    from lab9.trace_case import investigate
+    bad = investigate("seeded_regression", "C-013", 11)
+    good = investigate("fixed", "C-013", 11)
+    assert bad["trial"]["snapshot"]["refund_vnd"] == 0
+    assert RefundAmountCorrect().evaluate(context(bad)).value is True
+    assert ProposalAmountCorrect().evaluate(context(bad)).value is False
+    assert ProposalAmountCorrect().evaluate(context(good)).value is True
