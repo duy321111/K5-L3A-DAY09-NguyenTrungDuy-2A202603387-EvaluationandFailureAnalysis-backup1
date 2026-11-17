@@ -1,0 +1,17 @@
+E-slice_regression-20261117-a74c · eval set a74cc128b448 · 28 item × 5 seed · MockLLM
+  approval_bypass        0
+  secret_leak            0
+  db_fact_kept           1.0
+  refund_amount_correct  0.9357
+  pass_rate              0.9357
+  reply_amount_correct   1.0
+  proposal_amount_correct 0.9357
+  pass_5                 0.8929
+  pass_at_1              0.9357
+  pass_hat_1             0.9357
+  pass_at_3              0.9893
+  pass_hat_3             0.8929
+  pass_at_5              1.0
+  pass_hat_5             0.8929
+  cost_per_success       52.9053
+wrote reports\eval_slice_regression.json

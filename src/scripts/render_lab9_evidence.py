@@ -49,7 +49,7 @@ def render():
                 audit.append(f"| {row['item_id']} | {row['human']} | {row['judge']} | Theo human: {note} | {fixes[row['item_id']]} |")
     audit += ["", "Rogan–Gladen: tone observed FAIL=0.28, sensitivity=0.8, specificity=66/70; corrected=0.30. Helpful observed=0.09, corrected=0.30, nhưng hiệu chỉnh tỷ lệ không sửa được lỗi phân loại từng case và không khiến judge đạt calibration.",
         "", "Khi sensitivity + specificity ≤ 1, rate correction không xác định/không dùng được. Cần nhãn người mới và held-out trước khi dùng với LLM thật."]
-    (docs/'judge_audit.md').write_text('\n'.join(audit)+'\n',encoding='utf8')
+    (docs/'judge_audit.md').write_text('\n'.join(line.rstrip() for line in '\n'.join(audit).splitlines())+'\n',encoding='utf8')
     metrics=["| Metric | Baseline v1 | Fixed v1 | Regression v1 |", "|---|---|---|---|"]
     for mid in b1['metrics']:
         metrics.append(f"| {mid} | {b1['metrics'][mid]} | {fixed['metrics'].get(mid)} | {regression['metrics'].get(mid)} |")
@@ -79,7 +79,7 @@ def render():
         "Tăng eval_set_version khi đổi item/nhãn/slice; sinh lại baseline và tăng metric_spec_version khi thay hợp đồng metric. Cùng eval-set version chỉ siết ngưỡng.",
         "", "## Tái hiện", "```powershell", "cd src", ".\\.venv\\Scripts\\python.exe scripts/verify_lab9.py", "```",
         f"Kết quả script hiện tại: {sum(c['passed'] for c in summary['checks'])}/{len(summary['checks'])} expected outcomes. Xem reports/verification/summary.json và các log tương ứng. GitHub Actions được kiểm riêng qua PR; kết quả local không thay thế CI."]
-    (docs/'eval_card.md').write_text('\n'.join(card)+'\n',encoding='utf8')
+    (docs/'eval_card.md').write_text('\n'.join(line.rstrip() for line in '\n'.join(card).splitlines())+'\n',encoding='utf8')
     prd=["# PRD v1.1 — Định nghĩa chạy đúng và gate release", "", "Giữ chức năng Lab 8; bổ sung đánh giá, không sửa agent Lab 8. Đây là pilot mô phỏng offline cho claim hoàn phí/bồi thường một đơn thuộc principal được phép; không triển khai chuyển tiền thật hoặc xử lý tranh chấp nhiều đơn.", "",
         "## Tiêu chí thành công", "", "| Metric | Ngưỡng v1 | Blocking | Baseline |", "|---|---|---|---|"]
     for m in spec1['metrics']:
@@ -90,7 +90,7 @@ def render():
         "Baseline/spec phải được giữ ở nhánh được bảo vệ. Cùng eval-set version, min không giảm, max/max_increase không tăng, metric hoặc slice không biến mất và không bỏ blocking/no_significant_drop. V2 bổ sung slice và pass_hat_5, ngưỡng/căn cứ A/A nằm trong eval_card.md.",
         "", "## Phạm vi bằng chứng", "", "Đã có báo cáo script, bootstrap, mutation scorecard và integrity traps. Chưa có người dùng thật, held-out judge mới, kiểm key anchor riêng, hoặc bảo đảm phát hiện mọi bug hiếm với 5 seed. Fork CI và branch protection phải được bật/kiểm trên GitHub trước khi xem là release-ready.",
         "", "## Quản lý phiên bản", "", "Thay item/nhãn/slice: tăng eval-set version, rebuild và sinh baseline mới. Thay metric: tăng metric-spec version; không nới ngưỡng cùng eval-set version. Báo cáo và cách tái hiện nằm trong eval_card.md; không điền chữ ký phê duyệt thay người dùng."]
-    (docs/'PRD_v1.1.md').write_text('\n'.join(prd)+'\n',encoding='utf8')
+    (docs/'PRD_v1.1.md').write_text('\n'.join(line.rstrip() for line in '\n'.join(prd).splitlines())+'\n',encoding='utf8')
 
 
 if __name__ == '__main__':

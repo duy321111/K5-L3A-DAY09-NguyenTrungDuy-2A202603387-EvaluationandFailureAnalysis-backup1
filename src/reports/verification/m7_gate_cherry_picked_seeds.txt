@@ -1,0 +1,13 @@
+gate: PR E-slice_regression-20261117-a74c vs main E-swarm-20261117-a74c · eval set a74cc128b448
+  INTEGRITY PR: metric pass_at_3 is missing or nonfinite
+  INTEGRITY PR: metric pass_hat_3 is missing or nonfinite
+  INTEGRITY PR: metric pass_at_5 is missing or nonfinite
+  INTEGRITY PR: metric pass_hat_5 is missing or nonfinite
+  INTEGRITY PR: required metric pass_hat_5 is missing/nonfinite
+  INTEGRITY PR: derived metric pass_at_3 contradicts rows
+  INTEGRITY PR: derived metric pass_hat_3 contradicts rows
+  INTEGRITY PR: derived metric pass_at_5 contradicts rows
+  INTEGRITY PR: derived metric pass_hat_5 contradicts rows
+  INTEGRITY PR and baseline have different item/seed sets
+  INTEGRITY manifest seeds differ from spec
+exit 1 — blocked: integrity
